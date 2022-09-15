@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>chat</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript" src="chat.js"></script>
+</head>
+<body>
+	<input type="hidden" id="chatId" th:value="${chat.getId()}">
+	<h3 id="sender" th:text="${sender.getName()+' '+sender.getSurname()}"></h3>
+	
+	<div th:each="message:${chat.getChatHistory()}">
+		<p th:text="${'('+message.getSender()+' '+message.getDate()+')'+' '+message.getValue()}"></p>
+	</div>
+	<div id="real-time-message">
+	</div>
+	<div>
+		<div id="message-area">
+			<textarea rows="2" cols="25" id="message"></textarea>
+		</div>
+		<button onclick="sendMessage()">send message</button>
+	</div>
+</body>
+</html>

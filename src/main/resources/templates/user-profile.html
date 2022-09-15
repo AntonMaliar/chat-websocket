@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3 th:text="${user.getName()+' '+user.getSurname()}"></h3>
+	<hr>
+	<h3>send message</h3>
+	<div th:each="recipient:${listOfRecipients}">
+		<form action="chat">
+			<span th:text="${recipient.getName()+' '+recipient.getSurname()}"></span>
+			<input type="hidden" name="senderId" th:value="${user.getId()}">
+			<input type="hidden" name="recipientId" th:value="${recipient.getId()}">
+			<input type="submit" value="open chat">
+		</form>
+	</div>
+</body>
+</html>
